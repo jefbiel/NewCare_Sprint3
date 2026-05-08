@@ -1,1 +1,1 @@
-export * from "./lifequest/src/data/missoes";
+export * from "./newcare/src/data/missoes";

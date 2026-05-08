@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "lifequest",
-    "slug": "lifequest",
+    "name": "NewCare",
+    "slug": "newcare",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "lifequest",
+    "scheme": "newcare",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

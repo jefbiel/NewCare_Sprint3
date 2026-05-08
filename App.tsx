@@ -1,1 +1,1 @@
-export { default } from "./lifequest/App";
+export { default } from "./newcare/App";
