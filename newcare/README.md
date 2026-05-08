@@ -1,6 +1,4 @@
-
-
-# NewCare 
+# NewCare
 
 NewCare é um aplicativo mobile gamificado para ajudar na evolução de hábitos de saúde física, mental, lazer e sono. O app acompanha o progresso do usuário e incentiva a rotina saudável de forma divertida.
 
@@ -9,37 +7,73 @@ NewCare é um aplicativo mobile gamificado para ajudar na evolução de hábitos
 ## Passo a passo para rodar o projeto com Expo
 
 1. **Pré-requisitos:**
-  - Node.js instalado (recomendado versão LTS)
-  - npm instalado (vem junto com o Node.js)
-  - Git instalado
+   - Node.js instalado (recomendado versão LTS)
+   - npm instalado (vem junto com o Node.js)
+   - Git instalado
 
 2. **Clone o repositório:**
-  ```bash
-  git clone https://github.com/jefbiel/NewCare_Sprint3.git
-  cd NewCare_Sprint3/newcare
-  ```
+
+   ```bash
+   git clone https://github.com/jefbiel/NewCare_Sprint3.git
+   cd NewCare_Sprint3/newcare
+   ```
 
 3. **Instale o Expo CLI globalmente (se ainda não tiver):**
-  ```bash
-  npm install -g expo-cli
-  ```
+
+   ```bash
+   npm install -g expo-cli
+   ```
 
 4. **Instale as dependências do projeto:**
-  ```bash
-  npm install
-  ```
+
+   ```bash
+   npm install
+   ```
 
 5. **Inicie o servidor de desenvolvimento Expo:**
-  ```bash
-  npx expo start -c
-  ```
+
+   ```bash
+   npx expo start -c
+   ```
 
 6. **Execute o app:**
-  - No terminal do Expo, escolha:
-    - `a` para Android Emulator (precisa ter Android Studio instalado)
-    - `i` para iOS Simulator (apenas em Mac, precisa do Xcode)
-    - `w` para rodar no navegador (Web)
-    - Ou escaneie o QR Code com o app Expo Go no seu celular
+   - No terminal do Expo, escolha:
+     - `a` para Android Emulator (precisa ter Android Studio instalado)
+     - `i` para iOS Simulator (apenas em Mac, precisa do Xcode)
+     - `w` para rodar no navegador (Web)
+   - Ou escaneie o QR Code com o app Expo Go no seu celular
+
+---
+
+## Screenshots
+
+As imagens do app ficam em [`docs/screenshots`](docs/screenshots). A galeria abaixo mostra os principais fluxos e estados visuais do NewCare.
+
+### Fluxo principal
+
+| Login | Início | Missões |
+| --- | --- | --- |
+| <img src="docs/screenshots/TelaLogin.png" alt="Tela de Login" width="220" /> | <img src="docs/screenshots/TelaInicio.png" alt="Tela Inicial" width="220" /> | <img src="docs/screenshots/TelaMissoes.png" alt="Tela de Missões" width="220" /> |
+
+| Progresso com XP | Progresso sem XP | Perfil |
+| --- | --- | --- |
+| <img src="docs/screenshots/TelaProgressoComXP.png" alt="Tela de Progresso com XP" width="220" /> | <img src="docs/screenshots/TelaProgressoSemXP.png" alt="Tela de Progresso sem XP" width="220" /> | <img src="docs/screenshots/TelaPerfilTemaEscuro.png" alt="Tela de Perfil em tema escuro" width="220" /> |
+
+### Estados e feedbacks
+
+| E-mail inválido | Senha curta | Missão concluída |
+| --- | --- | --- |
+| <img src="docs/screenshots/TelaLoginAlertaEmailInvalido.png" alt="Alerta de e-mail inválido no login" width="220" /> | <img src="docs/screenshots/TelaLoginAlertaSenhaCurta.png" alt="Alerta de senha curta no login" width="220" /> | <img src="docs/screenshots/TelaInicioMensagemMissaoConcluida.png" alt="Mensagem de missão concluída na tela inicial" width="220" /> |
+
+| Adicionar missão | Missão adicionada |
+| --- | --- |
+| <img src="docs/screenshots/TelaMissoesAdicionarMissoes.png" alt="Tela para adicionar missões" width="220" /> | <img src="docs/screenshots/TelaMissaoAdicionada.png" alt="Confirmação de missão adicionada" width="220" /> |
+
+### Tema escuro
+
+| Início | Missões | Progresso |
+| --- | --- | --- |
+| <img src="docs/screenshots/TelaInicioTemaEscuro.png" alt="Tela inicial em tema escuro" width="220" /> | <img src="docs/screenshots/TelaMissoesTemaEscuro.png" alt="Tela de missões em tema escuro" width="220" /> | <img src="docs/screenshots/TelaProgressoTemaEscuro.png" alt="Tela de progresso em tema escuro" width="220" /> |
 
 ---
 
@@ -124,15 +158,3 @@ Verificar compatibilidade Expo:
 ```bash
 npx expo install --check
 ```
-
-## Demonstração
-
-Adicione screenshots na pasta `docs/screenshots` ou um vídeo curto demonstrando:
-
-- Login
-- Onboarding
-- Home
-- Missões
-- Progresso
-- Perfil
-
