@@ -1,7 +1,47 @@
 
-# LifeQuest
 
-LifeQuest é um aplicativo mobile gamificado para evolução de hábitos de saúde física, saúde mental, lazer e sono. O app não realiza diagnóstico, prescrição ou telemedicina; ele apenas organiza missões de bem-estar e mostra progresso do usuário.
+# NewCare 
+
+NewCare é um aplicativo mobile gamificado para ajudar na evolução de hábitos de saúde física, mental, lazer e sono. O app acompanha o progresso do usuário e incentiva a rotina saudável de forma divertida.
+
+---
+
+## Passo a passo para rodar o projeto com Expo
+
+1. **Pré-requisitos:**
+  - Node.js instalado (recomendado versão LTS)
+  - npm instalado (vem junto com o Node.js)
+  - Git instalado
+
+2. **Clone o repositório:**
+  ```bash
+  git clone https://github.com/jefbiel/NewCare_Sprint3.git
+  cd NewCare_Sprint3/newcare
+  ```
+
+3. **Instale o Expo CLI globalmente (se ainda não tiver):**
+  ```bash
+  npm install -g expo-cli
+  ```
+
+4. **Instale as dependências do projeto:**
+  ```bash
+  npm install
+  ```
+
+5. **Inicie o servidor de desenvolvimento Expo:**
+  ```bash
+  npx expo start -c
+  ```
+
+6. **Execute o app:**
+  - No terminal do Expo, escolha:
+    - `a` para Android Emulator (precisa ter Android Studio instalado)
+    - `i` para iOS Simulator (apenas em Mac, precisa do Xcode)
+    - `w` para rodar no navegador (Web)
+    - Ou escaneie o QR Code com o app Expo Go no seu celular
+
+---
 
 ## Funcionalidades
 
@@ -54,28 +94,6 @@ src/
 - AsyncStorage
 - ESLint
 
-## Como executar
-
-Instale as dependências:
-
-```bash
-npm install
-```
-
-Inicie o Expo:
-
-```bash
-npx expo start -c
-```
-
-Depois escolha uma opção no terminal:
-
-```txt
-a  Android Emulator
-i  iOS Simulator
-w  navegador
-```
-
 ## Login de teste
 
 O app aceita qualquer e-mail válido e senha com pelo menos 6 caracteres.
@@ -118,40 +136,3 @@ Adicione screenshots na pasta `docs/screenshots` ou um vídeo curto demonstrando
 - Progresso
 - Perfil
 
-## Checklist Sprint 3
-
-### Estrutura do projeto e TypeScript
-
-- Projeto organizado por pastas: `screens`, `services`, `components`, `context`, `routes`, `data` e `types`.
-- `strict` ativado no `tsconfig.json`.
-- Interfaces, enums e types centralizados em `src/types`.
-- Navegação tipada em `src/routes/types.ts`.
-- Código em `src` sem uso de `any`.
-
-### Telas e navegação
-
-- Mais de 3 telas funcionais: Login, Onboarding, Home, Missões, Progresso e Perfil.
-- Navegação com Stack e Bottom Tabs.
-- Componentes nativos utilizados: `FlatList`, `ScrollView`, `Image`, `TextInput`, `Switch`, `TouchableOpacity`.
-- Formulários com validação no Login, Onboarding, Missões e Perfil.
-- Feedback visual com loading, alerts de erro e alerts de sucesso.
-
-### Gerenciamento de estado
-
-- `useState` e `useEffect` usados com dados tipados.
-- Estado global centralizado em `AppContext`.
-- XP, moedas, streak, conquistas, missões e preferências refletem ações do usuário em tempo real.
-- Fluxo de autenticação funcional com sessão local.
-
-### Persistência local
-
-- `AsyncStorage` usado em `src/services/storage.ts`.
-- Sessão do usuário, missões, progresso e preferências são salvos localmente.
-- Dados restaurados na abertura do app com tela de carregamento inicial.
-
-### Documentação
-
-- README com descrição do projeto.
-- Instruções de execução com Expo.
-- Tecnologias utilizadas.
-- Espaço reservado para screenshots ou vídeo curto de demonstração.

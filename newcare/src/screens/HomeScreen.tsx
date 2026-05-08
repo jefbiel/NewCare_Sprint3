@@ -16,7 +16,8 @@ function progressoNivel(xp: number) {
 }
 
 export function HomeScreen() {
-  const { usuario, missoes, completarMissao } = useApp();
+  const { colors, usuario, missoes, completarMissao } = useApp();
+  const styles = criarStyles(colors);
   const concluidas = missoes.filter((m) => m.status === StatusMissao.Concluida).length;
   const pendentes = missoes.filter((m) => m.status === StatusMissao.Pendente);
   const percentualHoje = Math.round((concluidas / Math.max(1, missoes.length)) * 100);
@@ -99,10 +100,10 @@ export function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const criarStyles = (colors: typeof Colors.light) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.light.background,
+    backgroundColor: colors.background,
     padding: 20,
     paddingTop: 56,
   },
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   marca: {
-    color: Colors.light.primary,
+    color: colors.primary,
     fontSize: 13,
     fontWeight: "900",
     marginBottom: 2,
@@ -124,21 +125,21 @@ const styles = StyleSheet.create({
   saudacao: {
     fontSize: 25,
     fontWeight: "900",
-    color: Colors.light.text,
+    color: colors.text,
     marginBottom: 2,
   },
   subtitulo: {
-    color: Colors.light.muted,
+    color: colors.muted,
     marginTop: 4,
     marginBottom: 12,
   },
   painel: {
-    backgroundColor: Colors.light.text,
+    backgroundColor: colors.text,
     borderRadius: 18,
     padding: 18,
     marginTop: 18,
     marginBottom: 14,
-    shadowColor: Colors.light.secondary,
+    shadowColor: colors.secondary,
     shadowOpacity: 0.16,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 10 },
@@ -151,25 +152,25 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   painelLabel: {
-    color: Colors.light.primarySoft,
+    color: colors.primarySoft,
     fontSize: 12,
     fontWeight: "800",
     textTransform: "uppercase",
   },
   painelTitulo: {
-    color: Colors.light.surface,
+    color: colors.surface,
     fontWeight: "900",
     fontSize: 24,
     marginTop: 2,
   },
   xpPill: {
-    backgroundColor: Colors.light.primary,
+    backgroundColor: colors.primary,
     borderRadius: 999,
     paddingHorizontal: 12,
     paddingVertical: 8,
   },
   xpPillTexto: {
-    color: Colors.light.surface,
+    color: colors.surface,
     fontWeight: "900",
   },
   barra: {
@@ -181,11 +182,11 @@ const styles = StyleSheet.create({
   },
   barraInterna: {
     height: "100%",
-    backgroundColor: Colors.light.primary,
+    backgroundColor: colors.primary,
     borderRadius: 999,
   },
   meta: {
-    color: Colors.light.primarySoft,
+    color: colors.primarySoft,
     marginTop: 8,
     fontSize: 12,
     fontWeight: "600",
@@ -195,20 +196,20 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   resumoCard: {
-    backgroundColor: Colors.light.surface,
-    borderColor: Colors.light.border,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
     borderRadius: 16,
     borderWidth: 1,
     flex: 1,
     padding: 12,
   },
   resumoValor: {
-    color: Colors.light.text,
+    color: colors.text,
     fontSize: 18,
     fontWeight: "900",
   },
   resumoLabel: {
-    color: Colors.light.muted,
+    color: colors.muted,
     fontSize: 12,
     fontWeight: "800",
     marginTop: 2,
@@ -223,33 +224,33 @@ const styles = StyleSheet.create({
   tituloSecao: {
     fontSize: 20,
     fontWeight: "900",
-    color: Colors.light.text,
+    color: colors.text,
   },
   descricaoSecao: {
-    color: Colors.light.muted,
+    color: colors.muted,
     fontSize: 12,
     fontWeight: "700",
     marginTop: 2,
   },
   contador: {
-    color: Colors.light.primary,
+    color: colors.primary,
     fontWeight: "900",
     fontSize: 16,
   },
   estadoVazio: {
-    backgroundColor: Colors.light.surface,
-    borderColor: Colors.light.border,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
     borderRadius: 16,
     borderWidth: 1,
     padding: 16,
   },
   estadoVazioTitulo: {
-    color: Colors.light.text,
+    color: colors.text,
     fontSize: 16,
     fontWeight: "900",
   },
   estadoVazioTexto: {
-    color: Colors.light.muted,
+    color: colors.muted,
     marginTop: 4,
   },
 });

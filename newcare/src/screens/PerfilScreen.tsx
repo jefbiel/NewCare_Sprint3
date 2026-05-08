@@ -23,10 +23,11 @@ const areas = [
   { label: "Sono", valor: CategoriaMissao.Sono },
 ];
 
-const temas: PreferenciasUsuario["tema"][] = ["claro", "escuro", "sistema"];
+const temas: PreferenciasUsuario["tema"][] = ["claro", "escuro"];
 
 export function PerfilScreen() {
-  const { atualizarPerfil, logout, missoes, resetarPlano, usuario } = useApp();
+  const { atualizarPerfil, atualizarTema, colors, logout, missoes, resetarPlano, usuario } = useApp();
+  const styles = criarStyles(colors);
   const [nome, setNome] = useState(usuario?.nome ?? "");
   const [areaDominante, setAreaDominante] = useState(usuario?.areaDominante ?? CategoriaMissao.Mental);
   const [notificacoes, setNotificacoes] = useState(usuario?.preferencias.notificacoes ?? true);
@@ -128,7 +129,7 @@ export function PerfilScreen() {
         <TextInput
           style={styles.input}
           placeholder="Seu nome"
-          placeholderTextColor={Colors.light.muted}
+          placeholderTextColor={colors.muted}
           value={nome}
           onChangeText={setNome}
         />
@@ -159,8 +160,8 @@ export function PerfilScreen() {
           <Switch
             value={notificacoes}
             onValueChange={setNotificacoes}
-            trackColor={{ false: Colors.light.border, true: Colors.light.primarySoft }}
-            thumbColor={notificacoes ? Colors.light.primary : Colors.light.muted}
+            trackColor={{ false: colors.border, true: colors.primarySoft }}
+            thumbColor={notificacoes ? colors.primary : colors.muted}
           />
         </View>
 
@@ -168,7 +169,7 @@ export function PerfilScreen() {
         <TextInput
           style={styles.input}
           placeholder="08:00"
-          placeholderTextColor={Colors.light.muted}
+          placeholderTextColor={colors.muted}
           value={lembreteHorario}
           onChangeText={setLembreteHorario}
         />
@@ -177,7 +178,7 @@ export function PerfilScreen() {
         <TextInput
           style={styles.input}
           placeholder="3"
-          placeholderTextColor={Colors.light.muted}
+          placeholderTextColor={colors.muted}
           value={metaDiaria}
           onChangeText={setMetaDiaria}
           keyboardType="numeric"
@@ -189,7 +190,10 @@ export function PerfilScreen() {
             <TouchableOpacity
               key={opcao}
               style={[styles.chip, tema === opcao && styles.chipAtivo]}
-              onPress={() => setTema(opcao)}
+              onPress={() => {
+                setTema(opcao);
+                void atualizarTema(opcao);
+              }}
             >
               <Text style={[styles.chipTexto, tema === opcao && styles.chipTextoAtivo]}>{opcao}</Text>
             </TouchableOpacity>
@@ -230,9 +234,9 @@ export function PerfilScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const criarStyles = (colors: typeof Colors.light) => StyleSheet.create({
   container: {
-    backgroundColor: Colors.light.background,
+    backgroundColor: colors.background,
     flex: 1,
   },
   content: {
@@ -255,12 +259,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   nome: {
-    color: Colors.light.text,
+    color: colors.text,
     fontSize: 28,
     fontWeight: "900",
   },
   subtitulo: {
-    color: Colors.light.muted,
+    color: colors.muted,
     marginTop: 4,
     textTransform: "capitalize",
   },
@@ -271,54 +275,54 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   statCard: {
-    backgroundColor: Colors.light.surface,
-    borderColor: Colors.light.border,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
     borderRadius: 16,
     borderWidth: 1,
     padding: 14,
     width: "48%",
   },
   statValor: {
-    color: Colors.light.primary,
+    color: colors.primary,
     fontSize: 22,
     fontWeight: "900",
   },
   statLabel: {
-    color: Colors.light.muted,
+    color: colors.muted,
     fontWeight: "700",
     marginTop: 2,
   },
   card: {
-    backgroundColor: Colors.light.surface,
-    borderColor: Colors.light.border,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
     borderRadius: 16,
     borderWidth: 1,
     marginBottom: 14,
     padding: 16,
-    shadowColor: Colors.light.secondary,
+    shadowColor: colors.secondary,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.06,
     shadowRadius: 14,
     elevation: 2,
   },
   secaoTitulo: {
-    color: Colors.light.text,
+    color: colors.text,
     fontSize: 18,
     fontWeight: "900",
     marginBottom: 12,
   },
   label: {
-    color: Colors.light.text,
+    color: colors.text,
     fontWeight: "800",
     marginBottom: 8,
     marginTop: 8,
   },
   input: {
-    backgroundColor: Colors.light.background,
-    borderColor: Colors.light.border,
+    backgroundColor: colors.background,
+    borderColor: colors.border,
     borderRadius: 14,
     borderWidth: 1,
-    color: Colors.light.text,
+    color: colors.text,
     padding: 13,
   },
   chips: {
@@ -327,24 +331,24 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   chip: {
-    backgroundColor: Colors.light.background,
-    borderColor: Colors.light.border,
+    backgroundColor: colors.background,
+    borderColor: colors.border,
     borderRadius: 999,
     borderWidth: 1,
     paddingHorizontal: 12,
     paddingVertical: 8,
   },
   chipAtivo: {
-    backgroundColor: Colors.light.primarySoft,
-    borderColor: Colors.light.primary,
+    backgroundColor: colors.primarySoft,
+    borderColor: colors.primary,
   },
   chipTexto: {
-    color: Colors.light.muted,
+    color: colors.muted,
     fontWeight: "800",
     textTransform: "capitalize",
   },
   chipTextoAtivo: {
-    color: Colors.light.primary,
+    color: colors.primary,
   },
   linhaPreferencia: {
     alignItems: "center",
@@ -353,20 +357,20 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   itemTitulo: {
-    color: Colors.light.text,
+    color: colors.text,
     fontWeight: "900",
   },
   itemDescricao: {
-    color: Colors.light.muted,
+    color: colors.muted,
     marginTop: 2,
   },
   item: {
-    color: Colors.light.text,
+    color: colors.text,
     fontWeight: "700",
     marginBottom: 10,
   },
   barraMeta: {
-    backgroundColor: Colors.light.background,
+    backgroundColor: colors.background,
     borderRadius: 999,
     height: 10,
     marginBottom: 10,
@@ -374,7 +378,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   barraMetaInterna: {
-    backgroundColor: Colors.light.primary,
+    backgroundColor: colors.primary,
     borderRadius: 999,
     height: "100%",
   },

@@ -18,15 +18,17 @@ const Stack = createStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
 function Tabs() {
+  const { colors } = useApp();
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarActiveTintColor: Colors.light.primary,
-        tabBarInactiveTintColor: Colors.light.tabIconDefault,
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.tabIconDefault,
         tabBarStyle: {
-          backgroundColor: Colors.light.surface,
-          borderTopColor: Colors.light.border,
+          backgroundColor: colors.surface,
+          borderTopColor: colors.border,
           height: 62,
           paddingTop: 6,
         },
@@ -55,12 +57,13 @@ function Tabs() {
 }
 
 export function AppNavigator() {
-  const { carregandoInicial, usuario } = useApp();
+  const { carregandoInicial, colors, usuario } = useApp();
+  const styles = criarStyles(colors);
 
   if (carregandoInicial) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator color={Colors.light.primary} size="large" />
+        <ActivityIndicator color={colors.primary} size="large" />
         <Text style={styles.loadingText}>Preparando sua jornada...</Text>
       </View>
     );
@@ -81,16 +84,16 @@ export function AppNavigator() {
   );
 }
 
-const styles = StyleSheet.create({
+const criarStyles = (colors: typeof Colors.light) => StyleSheet.create({
   loadingContainer: {
     alignItems: "center",
-    backgroundColor: Colors.light.background,
+    backgroundColor: colors.background,
     flex: 1,
     justifyContent: "center",
     padding: 24,
   },
   loadingText: {
-    color: Colors.light.muted,
+    color: colors.muted,
     fontWeight: "800",
     marginTop: 12,
   },

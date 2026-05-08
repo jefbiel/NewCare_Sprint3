@@ -5,7 +5,8 @@ import { Colors } from "../../constants/theme";
 import { BrandHeader } from "../components/BrandHeader";
 
 export function ProgressoScreen() {
-  const { usuario, missoes, conquistas } = useApp();
+  const { colors, usuario, missoes, conquistas } = useApp();
+  const styles = criarStyles(colors);
   const total = missoes.length || 1;
   const concluidas = missoes.filter((m) => m.status === StatusMissao.Concluida).length;
   const percentual = Math.round((concluidas / total) * 100);
@@ -47,10 +48,10 @@ export function ProgressoScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const criarStyles = (colors: typeof Colors.light) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.light.background,
+    backgroundColor: colors.background,
   },
   content: {
     padding: 20,
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
   titulo: {
     fontSize: 28,
     fontWeight: "900",
-    color: Colors.light.text,
+    color: colors.text,
     marginBottom: 16,
   },
   grid: {
@@ -69,12 +70,12 @@ const styles = StyleSheet.create({
   },
   card: {
     width: "48%",
-    backgroundColor: Colors.light.surface,
+    backgroundColor: colors.surface,
     borderRadius: 16,
     padding: 16,
     borderWidth: 1,
-    borderColor: Colors.light.border,
-    shadowColor: Colors.light.secondary,
+    borderColor: colors.border,
+    shadowColor: colors.secondary,
     shadowOpacity: 0.06,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 8 },
@@ -83,39 +84,39 @@ const styles = StyleSheet.create({
   valor: {
     fontSize: 26,
     fontWeight: "900",
-    color: Colors.light.primary,
+    color: colors.primary,
   },
   label: {
-    color: Colors.light.muted,
+    color: colors.muted,
     marginTop: 4,
   },
   secao: {
     fontSize: 20,
     fontWeight: "900",
-    color: Colors.light.text,
+    color: colors.text,
     marginTop: 24,
     marginBottom: 12,
   },
   conquista: {
-    backgroundColor: Colors.light.surface,
+    backgroundColor: colors.surface,
     borderRadius: 16,
     padding: 16,
     borderWidth: 1,
-    borderColor: Colors.light.border,
+    borderColor: colors.border,
     marginBottom: 10,
     opacity: 0.65,
   },
   conquistaAtiva: {
     opacity: 1,
-    borderColor: Colors.light.warning,
-    backgroundColor: Colors.light.warningSoft,
+    borderColor: colors.warning,
+    backgroundColor: colors.warningSoft,
   },
   conquistaTitulo: {
     fontWeight: "900",
-    color: Colors.light.text,
+    color: colors.text,
   },
   conquistaDescricao: {
-    color: Colors.light.muted,
+    color: colors.muted,
     marginTop: 4,
   },
 });

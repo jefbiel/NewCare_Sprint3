@@ -17,7 +17,8 @@ const tempos = [10, 15, 30];
 const niveis = ["iniciante", "intermediario", "avancado"] as const;
 
 export function OnboardingScreen() {
-  const { concluirOnboarding } = useApp();
+  const { colors, concluirOnboarding } = useApp();
+  const styles = criarStyles(colors);
   const [foco, setFoco] = useState(CategoriaMissao.Mental);
   const [tempoDiario, setTempoDiario] = useState(15);
   const [nivelAtual, setNivelAtual] = useState<"iniciante" | "intermediario" | "avancado">("iniciante");
@@ -36,153 +37,168 @@ export function OnboardingScreen() {
   }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <View style={styles.header}>
-        <BrandHeader compact />
-        <Text style={styles.titulo}>Monte sua jornada</Text>
-        <Text style={styles.subtitulo}>
-          Escolha um ponto de partida e o app cria missões diárias proporcionais ao seu tempo.
-        </Text>
-      </View>
-
-      <View style={styles.cardDestaque}>
-        <Text style={styles.cardDestaqueEmoji}>{focoSelecionado.emoji}</Text>
-        <View style={styles.cardDestaqueInfo}>
-          <Text style={styles.cardDestaqueTitulo}>Plano focado em {focoSelecionado.label}</Text>
-          <Text style={styles.cardDestaqueTexto}>
-            {tempoDiario} minutos por dia • nível {nivelAtual}
+    <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <View style={styles.header}>
+          <BrandHeader compact />
+          <Text style={styles.titulo}>Monte sua jornada</Text>
+          <Text style={styles.subtitulo}>
+            Escolha um ponto de partida e o app cria missões diárias proporcionais ao seu tempo.
           </Text>
         </View>
-      </View>
 
-      <Text style={styles.label}>Área de foco</Text>
-      <View style={styles.grid}>
-        {focos.map((item) => (
-          <TouchableOpacity
-            key={item.valor}
-            style={[styles.opcao, foco === item.valor && styles.opcaoAtiva]}
-            onPress={() => setFoco(item.valor)}
-          >
-            <Text style={styles.opcaoEmoji}>{item.emoji}</Text>
-            <Text style={styles.opcaoTexto}>{item.label}</Text>
-            <Text style={styles.opcaoDescricao}>{item.descricao}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-
-      <Text style={styles.label}>Tempo disponível por dia</Text>
-      <View style={styles.linha}>
-        {tempos.map((tempo) => (
-          <TouchableOpacity
-            key={tempo}
-            style={[styles.chip, tempoDiario === tempo && styles.chipAtivo]}
-            onPress={() => setTempoDiario(tempo)}
-          >
-            <Text style={[styles.chipTexto, tempoDiario === tempo && styles.chipTextoAtivo]}>
-              {tempo} min
+        <View style={styles.cardDestaque}>
+          <Text style={styles.cardDestaqueEmoji}>{focoSelecionado.emoji}</Text>
+          <View style={styles.cardDestaqueInfo}>
+            <Text style={styles.cardDestaqueTitulo}>Plano focado em {focoSelecionado.label}</Text>
+            <Text style={styles.cardDestaqueTexto}>
+              {tempoDiario} min • nível {nivelAtual}
             </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-
-      <Text style={styles.label}>Nível atual</Text>
-      <View style={styles.linha}>
-        {niveis.map((nivel) => (
-          <TouchableOpacity
-            key={nivel}
-            style={[styles.chip, nivelAtual === nivel && styles.chipAtivo]}
-            onPress={() => setNivelAtual(nivel)}
-          >
-            <Text style={[styles.chipTexto, nivelAtual === nivel && styles.chipTextoAtivo]}>
-              {nivel}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-
-      <View style={styles.resumo}>
-        <Text style={styles.resumoTitulo}>Seu plano inicial</Text>
-        <View style={styles.resumoLinha}>
-          <Text style={styles.resumoLabel}>Missões estimadas</Text>
-          <Text style={styles.resumoValor}>{tempoDiario <= 10 ? 2 : tempoDiario <= 20 ? 3 : 4}</Text>
+          </View>
         </View>
-        <View style={styles.resumoLinha}>
-          <Text style={styles.resumoLabel}>Recompensas</Text>
-          <Text style={styles.resumoValor}>XP + moedas</Text>
-        </View>
-      </View>
 
-      <Botao titulo="Gerar missões" onPress={gerarPlano} carregando={carregando} />
-    </ScrollView>
+        <View style={styles.secao}>
+          <Text style={styles.label}>Área de foco</Text>
+          <View style={styles.grid}>
+            {focos.map((item) => (
+              <TouchableOpacity
+                key={item.valor}
+                style={[styles.opcao, foco === item.valor && styles.opcaoAtiva]}
+                onPress={() => setFoco(item.valor)}
+              >
+                <Text style={styles.opcaoEmoji}>{item.emoji}</Text>
+                <Text style={styles.opcaoTexto}>{item.label}</Text>
+                <Text style={styles.opcaoDescricao}>{item.descricao}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+
+        <View style={styles.secao}>
+          <View>
+            <Text style={styles.label}>Tempo por dia</Text>
+            <View style={styles.linha}>
+              {tempos.map((tempo) => (
+                <TouchableOpacity
+                  key={tempo}
+                  style={[styles.chip, tempoDiario === tempo && styles.chipAtivo]}
+                  onPress={() => setTempoDiario(tempo)}
+                >
+                  <Text style={[styles.chipTexto, tempoDiario === tempo && styles.chipTextoAtivo]}>
+                    {tempo} min
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+          <View style={styles.blocoNivel}>
+            <Text style={styles.label}>Nível</Text>
+            <View style={styles.linha}>
+              {niveis.map((nivel) => (
+                <TouchableOpacity
+                  key={nivel}
+                  style={[styles.chip, nivelAtual === nivel && styles.chipAtivo]}
+                  onPress={() => setNivelAtual(nivel)}
+                >
+                  <Text style={[styles.chipTexto, nivelAtual === nivel && styles.chipTextoAtivo]}>
+                    {nivel}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.resumo}>
+          <Text style={styles.resumoTitulo}>Seu plano inicial</Text>
+          <View style={styles.resumoLinha}>
+            <Text style={styles.resumoLabel}>Missões</Text>
+            <Text style={styles.resumoValor}>{tempoDiario <= 10 ? 2 : tempoDiario <= 20 ? 3 : 4}</Text>
+            <Text style={[styles.resumoLabel, { marginLeft: 12 }]}>Recompensa</Text>
+            <Text style={styles.resumoValor}>XP + moedas</Text>
+          </View>
+        </View>
+
+        <View style={styles.botaoArea}>
+          <Botao titulo="Gerar missões" onPress={gerarPlano} carregando={carregando} />
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
+const criarStyles = (colors: typeof Colors.light) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.light.background,
+    backgroundColor: colors.background,
   },
   content: {
-    padding: 24,
-    paddingTop: 54,
-    paddingBottom: 32,
+    paddingHorizontal: 18,
+    paddingTop: 28,
+    paddingBottom: 34,
   },
   header: {
     marginBottom: 18,
   },
   marca: {
-    color: Colors.light.primary,
+    color: colors.primary,
     fontSize: 13,
     fontWeight: "900",
     marginBottom: 4,
     textTransform: "uppercase",
   },
   titulo: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: "900",
-    color: Colors.light.text,
+    color: colors.text,
   },
   subtitulo: {
-    color: Colors.light.muted,
+    color: colors.muted,
     fontWeight: "700",
-    lineHeight: 20,
+    lineHeight: 19,
     marginTop: 8,
+    fontSize: 14,
   },
   cardDestaque: {
     alignItems: "center",
-    backgroundColor: Colors.light.text,
-    borderRadius: 18,
+    backgroundColor: colors.text,
+    borderRadius: 14,
     flexDirection: "row",
     gap: 14,
-    marginBottom: 18,
-    padding: 16,
-    shadowColor: Colors.light.secondary,
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.16,
-    shadowRadius: 18,
-    elevation: 4,
+    marginBottom: 22,
+    paddingHorizontal: 14,
+    paddingVertical: 16,
+    shadowColor: colors.secondary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.10,
+    shadowRadius: 8,
+    elevation: 2,
   },
   cardDestaqueEmoji: {
-    fontSize: 34,
+    fontSize: 28,
   },
   cardDestaqueInfo: {
     flex: 1,
   },
   cardDestaqueTitulo: {
-    color: Colors.light.surface,
-    fontSize: 17,
+    color: colors.surface,
+    fontSize: 15,
     fontWeight: "900",
   },
   cardDestaqueTexto: {
-    color: Colors.light.primarySoft,
+    color: colors.primarySoft,
     fontWeight: "700",
-    marginTop: 4,
+    marginTop: 5,
+    fontSize: 13,
+  },
+  secao: {
+    marginBottom: 20,
   },
   label: {
     fontWeight: "800",
-    color: Colors.light.text,
-    marginTop: 18,
-    marginBottom: 10,
+    color: colors.text,
+    marginBottom: 8,
+    fontSize: 14,
   },
   grid: {
     flexDirection: "row",
@@ -190,22 +206,23 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   opcao: {
-    width: "48%",
-    backgroundColor: Colors.light.surface,
+    flexBasis: "47%",
+    flexGrow: 1,
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: Colors.light.border,
-    borderRadius: 16,
-    minHeight: 104,
-    padding: 14,
-    shadowColor: Colors.light.secondary,
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.05,
-    shadowRadius: 10,
+    borderColor: colors.border,
+    borderRadius: 12,
+    minHeight: 88,
+    padding: 12,
+    shadowColor: colors.secondary,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.03,
+    shadowRadius: 4,
     elevation: 1,
   },
   opcaoAtiva: {
-    borderColor: Colors.light.primary,
-    backgroundColor: Colors.light.primarySoft,
+    borderColor: colors.primary,
+    backgroundColor: colors.primarySoft,
   },
   opcaoEmoji: {
     fontSize: 20,
@@ -213,66 +230,79 @@ const styles = StyleSheet.create({
   },
   opcaoTexto: {
     fontWeight: "900",
-    color: Colors.light.text,
+    color: colors.text,
+    fontSize: 14,
   },
   opcaoDescricao: {
-    color: Colors.light.muted,
-    fontSize: 12,
+    color: colors.muted,
+    fontSize: 11,
     fontWeight: "700",
+    lineHeight: 15,
     marginTop: 4,
   },
   linha: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 10,
-    marginBottom: 8,
+    gap: 8,
+  },
+
+  blocoNivel: {
+    marginTop: 18,
   },
   chip: {
-    backgroundColor: Colors.light.surface,
-    borderColor: Colors.light.border,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
     borderRadius: 999,
     borderWidth: 1,
+    minHeight: 38,
+    justifyContent: "center",
     paddingHorizontal: 14,
-    paddingVertical: 10,
+    paddingVertical: 8,
   },
   chipAtivo: {
-    backgroundColor: Colors.light.secondarySoft,
-    borderColor: Colors.light.secondary,
+    backgroundColor: colors.secondarySoft,
+    borderColor: colors.secondary,
   },
   chipTexto: {
-    color: Colors.light.muted,
+    color: colors.muted,
     fontWeight: "800",
     textTransform: "capitalize",
+    fontSize: 13,
   },
   chipTextoAtivo: {
-    color: Colors.light.secondary,
+    color: colors.secondary,
   },
   resumo: {
-    backgroundColor: Colors.light.surface,
-    borderColor: Colors.light.border,
-    borderRadius: 16,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
+    borderRadius: 12,
     borderWidth: 1,
-    marginBottom: 16,
-    marginTop: 10,
-    padding: 16,
+    marginBottom: 18,
+    padding: 14,
   },
   resumoTitulo: {
-    color: Colors.light.text,
-    fontSize: 17,
+    color: colors.text,
+    fontSize: 14,
     fontWeight: "900",
-    marginBottom: 10,
+    marginBottom: 8,
   },
   resumoLinha: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 8,
+    alignItems: "center",
+    flexWrap: "wrap",
+    rowGap: 4,
   },
   resumoLabel: {
-    color: Colors.light.muted,
+    color: colors.muted,
     fontWeight: "800",
+    fontSize: 12,
   },
   resumoValor: {
-    color: Colors.light.primary,
+    color: colors.primary,
     fontWeight: "900",
+    fontSize: 13,
+  },
+  botaoArea: {
+    marginBottom: 8,
   },
 });

@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Missao, StatusMissao } from "../types";
 import { Colors } from "../../constants/theme";
+import { useApp } from "../context/AppContext";
 
 interface Props {
   missao: Missao;
@@ -15,6 +16,8 @@ const categoriaEmoji = {
 };
 
 export function CardMissao({ missao, onPress }: Props) {
+  const { colors } = useApp();
+  const styles = criarStyles(colors);
   const concluida = missao.status === StatusMissao.Concluida;
 
   return (
@@ -42,23 +45,23 @@ export function CardMissao({ missao, onPress }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+const criarStyles = (colors: typeof Colors.light) => StyleSheet.create({
   card: {
-    backgroundColor: Colors.light.surface,
+    backgroundColor: colors.surface,
     borderRadius: 16,
     padding: 16,
     marginBottom: 12,
     borderWidth: 1,
-    borderColor: Colors.light.border,
-    shadowColor: Colors.light.secondary,
+    borderColor: colors.border,
+    shadowColor: colors.secondary,
     shadowOpacity: 0.07,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 8 },
     elevation: 2,
   },
   cardConcluido: {
-    backgroundColor: Colors.light.successSoft,
-    borderColor: "#A9D8F5",
+    backgroundColor: colors.successSoft,
+    borderColor: colors.success,
   },
   header: {
     flexDirection: "row",
@@ -69,11 +72,11 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     fontWeight: "900",
-    color: Colors.light.text,
+    color: colors.text,
   },
   badge: {
-    backgroundColor: Colors.light.secondarySoft,
-    color: Colors.light.secondary,
+    backgroundColor: colors.secondarySoft,
+    color: colors.secondary,
     borderRadius: 999,
     paddingHorizontal: 8,
     paddingVertical: 4,
@@ -82,22 +85,22 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
   },
   descricao: {
-    color: Colors.light.muted,
+    color: colors.muted,
     marginTop: 8,
   },
   meta: {
-    color: Colors.light.muted,
+    color: colors.muted,
     marginTop: 8,
     fontSize: 12,
   },
   botao: {
-    backgroundColor: Colors.light.primary,
+    backgroundColor: colors.primary,
     borderRadius: 12,
     padding: 12,
     marginTop: 12,
   },
   botaoConcluido: {
-    backgroundColor: Colors.light.success,
+    backgroundColor: colors.success,
   },
   botaoTexto: {
     color: "#fff",

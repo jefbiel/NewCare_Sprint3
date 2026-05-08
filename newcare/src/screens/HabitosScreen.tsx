@@ -15,7 +15,8 @@ const categorias = [
 ];
 
 export function HabitosScreen() {
-  const { missoes, completarMissao, adicionarMissao } = useApp();
+  const { colors, missoes, completarMissao, adicionarMissao } = useApp();
+  const styles = criarStyles(colors);
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [categoria, setCategoria] = useState(CategoriaMissao.Mental);
@@ -80,14 +81,14 @@ export function HabitosScreen() {
             <TextInput
               style={styles.input}
               placeholder="Título da missão"
-              placeholderTextColor={Colors.light.muted}
+              placeholderTextColor={colors.muted}
               value={titulo}
               onChangeText={setTitulo}
             />
             <TextInput
               style={[styles.input, styles.inputDescricao]}
               placeholder="Descrição"
-              placeholderTextColor={Colors.light.muted}
+              placeholderTextColor={colors.muted}
               value={descricao}
               onChangeText={setDescricao}
               multiline
@@ -95,7 +96,7 @@ export function HabitosScreen() {
             <TextInput
               style={styles.input}
               placeholder="Duração em minutos"
-              placeholderTextColor={Colors.light.muted}
+              placeholderTextColor={colors.muted}
               value={duracao}
               onChangeText={setDuracao}
               keyboardType="numeric"
@@ -171,50 +172,50 @@ export function HabitosScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const criarStyles = (colors: typeof Colors.light) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.light.background,
+    backgroundColor: colors.background,
     padding: 20,
     paddingTop: 56,
   },
   titulo: {
     fontSize: 28,
     fontWeight: "900",
-    color: Colors.light.text,
+    color: colors.text,
   },
   subtitulo: {
-    color: Colors.light.muted,
+    color: colors.muted,
     marginTop: 4,
     marginBottom: 16,
   },
   status: {
-    color: Colors.light.secondary,
+    color: colors.secondary,
     fontWeight: "700",
     marginBottom: 6,
     textTransform: "capitalize",
   },
   extraBox: {
-    backgroundColor: Colors.light.surface,
-    borderColor: Colors.light.border,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
     borderRadius: 16,
     borderWidth: 1,
     marginBottom: 18,
     padding: 16,
-    shadowColor: Colors.light.secondary,
+    shadowColor: colors.secondary,
     shadowOpacity: 0.06,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 8 },
     elevation: 2,
   },
   listaTitulo: {
-    color: Colors.light.text,
+    color: colors.text,
     fontSize: 18,
     fontWeight: "900",
     marginBottom: 12,
   },
   listaVazia: {
-    color: Colors.light.muted,
+    color: colors.muted,
     marginBottom: 16,
   },
   concluidasBox: {
@@ -222,12 +223,12 @@ const styles = StyleSheet.create({
     marginBottom: 28,
   },
   extraTitulo: {
-    color: Colors.light.text,
+    color: colors.text,
     fontSize: 18,
     fontWeight: "900",
   },
   extraTexto: {
-    color: Colors.light.muted,
+    color: colors.muted,
     marginTop: 6,
     marginBottom: 14,
   },
@@ -235,11 +236,11 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   input: {
-    backgroundColor: Colors.light.background,
-    borderColor: Colors.light.border,
+    backgroundColor: colors.background,
+    borderColor: colors.border,
     borderRadius: 14,
     borderWidth: 1,
-    color: Colors.light.text,
+    color: colors.text,
     padding: 13,
   },
   inputDescricao: {
@@ -252,22 +253,22 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   chip: {
-    backgroundColor: Colors.light.background,
-    borderColor: Colors.light.border,
+    backgroundColor: colors.background,
+    borderColor: colors.border,
     borderRadius: 999,
     borderWidth: 1,
     paddingHorizontal: 12,
     paddingVertical: 8,
   },
   chipAtivo: {
-    backgroundColor: Colors.light.primarySoft,
-    borderColor: Colors.light.primary,
+    backgroundColor: colors.primarySoft,
+    borderColor: colors.primary,
   },
   chipTexto: {
-    color: Colors.light.muted,
+    color: colors.muted,
     fontWeight: "800",
   },
   chipTextoAtivo: {
-    color: Colors.light.primary,
+    color: colors.primary,
   },
 });

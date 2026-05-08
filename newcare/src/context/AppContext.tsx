@@ -1,15 +1,20 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { useColorScheme } from "react-native";
 import { MISSOES, gerarMissoesPersonalizadas } from "../data/missoes";
 import { AtualizarPerfilDados, CategoriaMissao, Conquista, Missao, NovaMissaoDados, OnboardingPerfil, PreferenciasUsuario, StatusMissao, TipoMissao, Usuario } from "../types";
 import { buscar, remover, salvar } from "../services/storage";
+import { Colors } from "../../constants/theme";
 
 interface ContextData {
   carregandoInicial: boolean;
   usuario: Usuario | null;
   missoes: Missao[];
   conquistas: Conquista[];
+  colors: typeof Colors.light;
+  temaResolvido: "light" | "dark";
   login: (email: string, senha: string) => Promise<void>;
   atualizarPerfil: (dados: AtualizarPerfilDados) => Promise<void>;
+  atualizarTema: (tema: PreferenciasUsuario["tema"]) => Promise<void>;
   completarMissao: (id: string) => void;
   adicionarMissao: (missao: NovaMissaoDados) => Promise<void>;
   concluirOnboarding: (perfil: OnboardingPerfil) => Promise<void>;
@@ -74,10 +79,14 @@ function montarConquistas(usuario: Usuario | null, missoes: Missao[]): Conquista
 }
 
 export function AppProvider({ children }: { children: ReactNode }) {
+  const sistemaTema = useColorScheme();
   const [carregandoInicial, setCarregandoInicial] = useState(true);
   const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [missoes, setMissoes] = useState<Missao[]>(MISSOES);
   const conquistas = montarConquistas(usuario, missoes);
+  const preferenciaTema = usuario?.preferencias.tema ?? "sistema";
+  const temaResolvido = preferenciaTema === "sistema" ? (sistemaTema === "dark" ? "dark" : "light") : preferenciaTema === "escuro" ? "dark" : "light";
+  const colors = Colors[temaResolvido];
 
   useEffect(() => {
     async function load() {
@@ -144,6 +153,21 @@ export function AppProvider({ children }: { children: ReactNode }) {
             foco: dados.areaDominante,
           }
         : usuario.perfil,
+    };
+
+    setUsuario(usuarioAtualizado);
+    await salvar("user", usuarioAtualizado);
+  }
+
+  async function atualizarTema(tema: PreferenciasUsuario["tema"]) {
+    if (!usuario) return;
+
+    const usuarioAtualizado: Usuario = {
+      ...usuario,
+      preferencias: {
+        ...usuario.preferencias,
+        tema,
+      },
     };
 
     setUsuario(usuarioAtualizado);
@@ -234,8 +258,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
         usuario,
         missoes,
         conquistas,
+        colors,
+        temaResolvido,
         login,
         atualizarPerfil,
+        atualizarTema,
         completarMissao,
         adicionarMissao,
         concluirOnboarding,
