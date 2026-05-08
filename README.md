@@ -1,15 +1,27 @@
 # NewCare
 
-NewCare é um aplicativo mobile gamificado para ajudar na evolução de hábitos de saúde física, mental, lazer e sono. O app acompanha o progresso do usuário e incentiva a rotina saudável de forma divertida.
+NewCare é um aplicativo mobile desenvolvido como projeto acadêmico para apoiar a criação e o acompanhamento de hábitos saudáveis. A proposta do app é transformar pequenas ações do dia a dia em missões, usando elementos de gamificação como XP, níveis, moedas, conquistas e sequência de dias para incentivar o usuário a manter uma rotina melhor.
+
+O aplicativo trabalha com quatro áreas principais de cuidado:
+
+- Saúde mental
+- Saúde física
+- Lazer
+- Sono
+
+Após o login, o usuário passa por um onboarding simples, informa sua área de foco, tempo disponível por dia e nível atual. Com essas informações, o app gera missões personalizadas e acompanha o progresso ao longo do uso.
 
 ---
 
-## Passo a passo para rodar o projeto com Expo
+## Como Rodar o Projeto com Expo
 
 1. **Pré-requisitos:**
-   - Node.js instalado (recomendado versão LTS)
-   - npm instalado (vem junto com o Node.js)
-   - Git instalado
+   - Ter o Node.js instalado, de preferência na versão LTS.
+   - Ter o npm instalado. Ele normalmente já vem junto com o Node.js.
+   - Ter o Git instalado.
+   - Para testar no celular, instalar o aplicativo Expo Go.
+   - Para testar em emulador Android, ter o Android Studio configurado.
+   - Para testar no simulador iOS, é necessário usar macOS com Xcode instalado.
 
 2. **Clone o repositório:**
 
@@ -18,30 +30,33 @@ NewCare é um aplicativo mobile gamificado para ajudar na evolução de hábitos
    cd NewCare_Sprint3/newcare
    ```
 
-3. **Instale o Expo CLI globalmente (se ainda não tiver):**
-
-   ```bash
-   npm install -g expo-cli
-   ```
-
-4. **Instale as dependências do projeto:**
+3. **Instale as dependências do projeto:**
 
    ```bash
    npm install
    ```
 
-5. **Inicie o servidor de desenvolvimento Expo:**
+4. **Inicie o projeto com Expo:**
 
    ```bash
    npx expo start -c
    ```
 
-6. **Execute o app:**
-   - No terminal do Expo, escolha:
-     - `a` para Android Emulator (precisa ter Android Studio instalado)
-     - `i` para iOS Simulator (apenas em Mac, precisa do Xcode)
-     - `w` para rodar no navegador (Web)
-   - Ou escaneie o QR Code com o app Expo Go no seu celular
+5. **Escolha onde executar o app:**
+   - Pressione `a` no terminal para abrir no emulador Android.
+   - Pressione `i` no terminal para abrir no simulador iOS.
+   - Pressione `w` no terminal para abrir a versão web.
+   - Escaneie o QR Code com o app Expo Go para abrir no celular.
+
+Também é possível usar os scripts do projeto:
+
+```bash
+npm run android
+npm run ios
+npm run web
+```
+
+Observação: os comandos acima devem ser executados dentro da pasta `newcare`.
 
 ---
 
