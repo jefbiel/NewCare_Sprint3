@@ -11,6 +11,12 @@ O aplicativo trabalha com quatro áreas principais de cuidado:
 
 Após o login, o usuário passa por um onboarding simples, informa sua área de foco, tempo disponível por dia e nível atual. Com essas informações, o app gera missões personalizadas e acompanha o progresso ao longo do uso.
 
+## Integrantes do Grupo
+
+- Gilson Dias Ramos Junior - RM552345
+- Jeferson Gabriel de Mendonça - RM553149
+- Larissa Estella Gonçalves dos Santos - RM552695
+
 ---
 
 ## Como Rodar o Projeto com Expo
@@ -72,7 +78,7 @@ As imagens do app ficam em [`newcare/docs/screenshots`](newcare/docs/screenshots
 
 | Progresso com XP | Progresso sem XP | Perfil |
 | --- | --- | --- |
-| <img src="newcare/docs/screenshots/TelaProgressoComXP.png" alt="Tela de Progresso com XP" width="220" /> | <img src="newcare/docs/screenshots/TelaProgressoSemXP.png" alt="Tela de Progresso sem XP" width="220" /> | <img src="newcare/docs/screenshots/TelaPerfilTemaEscuro.png" alt="Tela de Perfil em tema escuro" width="220" /> |
+| <img src="newcare/docs/screenshots/TelaProgressoComXP.png" alt="Tela de Progresso com XP" width="220" /> | <img src="newcare/docs/screenshots/TelaProgressoSemXP.png" alt="Tela de Progresso sem XP" width="220" /> | <img src="newcare/docs/screenshots/TelaPerfil.png" alt="Tela de Perfil" width="220" /> |
 
 ### Estados e feedbacks
 
@@ -80,15 +86,19 @@ As imagens do app ficam em [`newcare/docs/screenshots`](newcare/docs/screenshots
 | --- | --- | --- |
 | <img src="newcare/docs/screenshots/TelaLoginAlertaEmailInvalido.png" alt="Alerta de e-mail inválido no login" width="220" /> | <img src="newcare/docs/screenshots/TelaLoginAlertaSenhaCurta.png" alt="Alerta de senha curta no login" width="220" /> | <img src="newcare/docs/screenshots/TelaInicioMensagemMissaoConcluida.png" alt="Mensagem de missão concluída na tela inicial" width="220" /> |
 
-| Adicionar missão | Missão adicionada |
-| --- | --- |
-| <img src="newcare/docs/screenshots/TelaMissoesAdicionarMissoes.png" alt="Tela para adicionar missões" width="220" /> | <img src="newcare/docs/screenshots/TelaMissaoAdicionada.png" alt="Confirmação de missão adicionada" width="220" /> |
+| Adicionar missão | Missão adicionada | Sair do perfil |
+| --- | --- | --- |
+| <img src="newcare/docs/screenshots/TelaMissoesAdicionarMissoes.png" alt="Tela para adicionar missões" width="220" /> | <img src="newcare/docs/screenshots/TelaMissaoAdicionada.png" alt="Confirmação de missão adicionada" width="220" /> | <img src="newcare/docs/screenshots/TelaPerfilSair.png" alt="Opção de sair no perfil" width="220" /> |
 
 ### Tema escuro
 
 | Início | Missões | Progresso |
 | --- | --- | --- |
 | <img src="newcare/docs/screenshots/TelaInicioTemaEscuro.png" alt="Tela inicial em tema escuro" width="220" /> | <img src="newcare/docs/screenshots/TelaMissoesTemaEscuro.png" alt="Tela de missões em tema escuro" width="220" /> | <img src="newcare/docs/screenshots/TelaProgressoTemaEscuro.png" alt="Tela de progresso em tema escuro" width="220" /> |
+
+| Perfil | Sair do perfil |
+| --- | --- |
+| <img src="newcare/docs/screenshots/TelaPerfilTemaEscuro.png" alt="Tela de perfil em tema escuro" width="220" /> | <img src="newcare/docs/screenshots/TelaPerfilSairTemaEscuro.png" alt="Opção de sair no perfil em tema escuro" width="220" /> |
 
 ---
 
